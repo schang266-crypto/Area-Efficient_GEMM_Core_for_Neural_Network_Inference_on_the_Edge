@@ -2,7 +2,8 @@
 
 An 8×8 systolic GEMM accelerator taped out in **Skywater 130 nm**. FP4 weights and activations, FP16 accumulators, FP16×FP16 → FP4 vector quantization on output. The full chip closes timing at 14 ns (≈137 MHz at typical PVT), delivering **3.59 GFLOPS/s** at **0.40× the power** of a naive flattened baseline. This is a 2.25× throughput improvement at lower power, achieved by hardening the PE and vector-unit as floorplanned macros and adopting a pruned Dadda multiplier in the scale path.
 
-> ECE 755, University of Wisconsin–Madison · **Team:** Ashwin K. Avula · Shao-Kai Chang · Samuel Cooper · Advait Paithankar · Rohan Rao
+> ECE 755, University of Wisconsin–Madison ·
+> **Team:** Ashwin K. Avula · Shao-Kai Chang · Samuel Cooper · Advait Paithankar · Rohan Rao
 
 ---
 

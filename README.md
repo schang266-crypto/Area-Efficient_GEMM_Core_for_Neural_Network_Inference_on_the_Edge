@@ -177,31 +177,3 @@ Hierarchical APR, signed off across `nom_tt_025C_1v80`, `min_ss_100C_1v60`, and 
 The **GEMM PE macro** is 14,344 µm² (≈ 0.014 mm²) with 1,410 std cells at 86.4% utilization, +6.73 ns setup slack at the nom corner (~137.5 MHz). It is consistently the hierarchical critical path; the flat APR critical path is routing-dominated and varies by corner. The **vector unit macro** is hardened as a single 1149 × 46 µm row (≈ 0.053 mm²), matched to the width of the systolic array so it places directly beneath it.
 
 Timing closed cleanly at all three corners; residual signoff items are limited to a small number of max-slew and antenna warnings at the slow corner. Per-corner numbers are in [`Synthesis/<flow>/metrics.json`](Synthesis/).
-
----
-
-## Repository layout
-
-```
-ECE755_TPU/
-├── Design2/src/                     RTL
-├── Design1/                         Baseline reference (single-stage PE)
-├── Synthesis/                       Hardened tapeout artifacts (read-only)
-│   ├── gemm_pe/                     PE macro: GDS, LEF, SDF, Liberty, metrics
-│   ├── vector_unit/                 8-lane vector unit macro
-│   ├── gemm_top_design1/            Design 1 flat (baseline)
-│   ├── gemm_top_design2_flat/       Design 2 flat
-│   └── gemm_top_design2_hierarch/   ★ Final hierarchical signoff
-├── openlane/                        OpenLane2 replication scripts (older flow)
-│   ├── scripts/run_flow.sh          Single-config driver
-│   ├── design2_hier/run_hier.sh     Two-step PE → top driver
-│   └── design2_*/                   Per-flow config.json + constraints
-├── DesignDiagrams/                  Architecture PNGs (referenced above)
-├── Verification/                    Top-level testbenches (including MNIST)
-└── Gemm_Top_Results.xlsx            PPA spreadsheet across runs
-```
-
-`Synthesis/` holds the final correct outputs and configs from the signoff flow (14 ns clock, hardened macros). `openlane/` is older and parameterized for a 20 ns target.
-
----
-
